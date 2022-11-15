@@ -1,0 +1,121 @@
+<%- include('layout/header') %>
+
+
+
+    <body id="page-top">
+
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+
+            <%- include('layout/sidenav') %>
+
+                <!-- Content Wrapper -->
+                <div id="content-wrapper" class="d-flex flex-column">
+
+                    <!-- Main Content -->
+                    <div id="content">
+                        <%- include('layout/topnav') %>
+
+
+
+
+
+
+                            <!-- Begin Page Content -->
+                            <div class="container-fluid">
+                                <div class="maincontainer2">
+                                    <% if(message_failed.length) { %>
+                                        <div class="alert alert-danger" role="alert">
+                                            <%= message_failed %>
+                                        </div>
+                                        <% } %>
+                                            <% if(message_success.length) { %>
+                                                <div class="alert alert-success" role="alert">
+                                                    <%= message_success %>Now You can go <a href="/admin/viewcomment"
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                                                class="fas fa-download fa-sm text-white-50"></i> Show
+                                                            Table</a>
+                                                </div>
+                                                <% } %>
+                                                    <% if(message_warning.length) { %>
+                                                        <div class="alert alert-warning" role="alert">
+                                                            <%= message_warning %>
+                                                        </div>
+                                                        <% } %>
+                                                            <div class="main10">
+
+                                                                <div class="main11">
+                                                                    <h1 class="hb1">Enter Your Details</h1>
+                                                                </div>
+                                                                <form action="/admin/admincomment" method="post"  class="fb">
+                                                                    <div class="form-group">
+                                                                        <label for="post">Post Name:</label>
+                                                                        <select name="post" class="form-control go2" id="post">
+                                                                            <% allcom.map(data => { %>
+                                                                                <option value="<%= data._id %>"><%= data.title %></option>
+                                                                            <% }) %>
+                                                                        </select>
+
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="name">Name:</label>
+                                                                        <input type="text" class="form-control go2"
+                                                                        name="name" id="name"
+                                                                        placeholder="Enter Your Name">
+
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="email">Email:</label>
+                                                                        <input type="text" class="form-control go2"
+                                                                        name="email" id="email"
+                                                                        placeholder="Enter Your Email">
+
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                       
+                                                                        <label for="comment">Comment:</label>
+                                                                        <textarea name="comment" id="comment" placeholder="Enter Your Comment"></textarea>
+                                                                        
+
+                                                                    </div>
+                                                                   
+                                                                   
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary btn-user btn-block bt">
+                                                                        Comment Details Entered
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+
+                                </div>
+
+
+
+
+
+
+                            </div>
+                            <!-- /.container-fluid -->
+
+                    </div>
+                    <!-- End of Main Content -->
+
+                    <%- include('layout/sidefooter') %>
+
+
+                </div>
+                <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <%- include('layout/logoutuser') %>
+
+
+
+            <%- include('layout/footer') %>

@@ -1,0 +1,51 @@
+<%- include("partial/header.ejs") %>
+    <%- include("partial/header-top.ejs") %>
+
+        <div class="sign-up-form">
+            <br>
+            <h1 style="font-family: LobsterTwo-Regular;">Update Your Story</h1>
+            <% if(message.length > 0) {%>
+                <div class="<%- alert %>">
+                    <%- message %>
+                </div>
+                <% } %>
+                    <form action="/updatepost" method="POST" enctype="multipart/form-data" style="font-family: LobsterTwo-Regular; font-size: 1.5rem;">
+                        <div class="form-group">
+                            <input type="hidden" name="id" value="<%- result._id %>">
+                            <label for="title">Post Title</label><br>
+                            <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp" value="<%- result.title %>" placeholder="Enter Post Title" style="font-size: 1.2rem;" required>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label>Choose Category</label>
+                                <select name="category" class="form-control" id="category" style="font-size: 1.2rem;">
+                        <option disabled selected>Select Category</option>
+                        <% for(let data of category){ %>
+                            <option value="<%= data._id %>" <% if(data.categoryName === result.category.categoryName) %>selected><%= data.categoryName %></option>
+                        <% } %>
+                    </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subTitle">Post Subtitle</label><br>
+                            <input type="text" class="form-control" name="subTitle" id="subTitle" placeholder="Enter Post Sub Title" value="<%- result.subTitle %>" style="font-size: 1.2rem;" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postText">Enter Post</label><br>
+                            <textarea name="postText"><%- result.postText %></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Post image:</label><br>
+                            <input type="file" class="form-control" name="image" id="image" placeholder="enter post Image" accept="image/*" required>
+                        </div>
+                       
+                        <p>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" style="font-size: 1.2rem;">Post</button>
+                    </form>
+        </div>
+        <%- include("partial/footer.ejs") %>
+            <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+            <script>
+                CKEDITOR.replace('post');
+            </script>
